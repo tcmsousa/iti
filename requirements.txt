@@ -1,0 +1,4 @@
+Flask>=2.3
+gunicorn>=21
+Werkzeug>=2.3
+prometheus-flask-exporter>=0.23

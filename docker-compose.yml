@@ -1,0 +1,59 @@
+version: "3.9"
+services:
+  app1:
+    build: .
+    container_name: umdrive_app1
+    command: ["gunicorn","-w","1","-b","0.0.0.0:8000","app:app"]
+    environment:
+      - API_KEY=UMDRIVE_123
+    volumes:
+      - /srv/umdrive:/app/storage
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+  app2:
+    build: .
+    container_name: umdrive_app2
+    command: ["gunicorn","-w","1","-b","0.0.0.0:8000","app:app"]
+    environment:
+      - API_KEY=UMDRIVE_123
+    volumes:
+      - /srv/umdrive:/app/storage
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+  lb:
+    image: nginx:alpine
+    container_name: umdrive_lb
+    ports:
+      - "8080:80"
+      - "8443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+    depends_on:
+      - app1
+      - app2
+    restart: unless-stopped
+    
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: umdrive_prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports: 
+      - "9090:9090"
+    restart: unless-stopped
+    depends_on: [app1, app2]
+    
+  grafana:
+    image: grafana/grafana:latest
+    container_name: umdrive_grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    restart: unless-stopped
+    depends_on: [prometheus]
