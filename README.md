@@ -6,7 +6,7 @@ Este documento descreve a arquitetura técnica da solução "UM Drive", desenhad
 
 O sistema segue uma arquitetura híbrida de **Virtualização e Containerização**. A infraestrutura base é composta por **Máquinas Virtuais (VMs)** que hospedam o ambiente Docker, garantindo isolamento do sistema operativo host.
 
-### Diagrama de Componentes
+### Diagrama da Arquitetura
 
 ```mermaid
 graph TD
