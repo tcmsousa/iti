@@ -28,9 +28,6 @@ graph TD
     Admin([Admin]) -->|HTTP :3000| Grafana[Grafana Dashboard]
     Grafana -->|Query| Prometheus
 ```
-
-![Diagrama da Arquitetura](Diagrama%20da%20Arquitetura.png)
-
 ## 2. Componentes Principais
 
 ### Infraestrutura (Virtualização)
@@ -57,7 +54,7 @@ graph TD
     *   **Segurança**: Impõe autenticação mútua (mTLS).
 
 ### Armazenamento (Persistência)
-*   **Tecnologia**: Docker Volume (simulando NFS).
+*   **Tecnologia**: Docker Volume (a simular NFS).
 *   **Função**: Garante que um ficheiro carregado no `App1` está disponível para `App2`.
 
 ### Observabilidade (Monitorização)
@@ -79,7 +76,7 @@ graph TD
 *   **Isolamento de SO**: A VM protege o host físico.
 *   **Isolamento de Rede**: A rede Docker protege os serviços.
 
-## 5. Decisões de Design e Justificativas
+## 5. Decisões de Design e Justificações
 
 Esta secção detalha o racional por trás das escolhas tecnológicas.
 
