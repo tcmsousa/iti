@@ -29,7 +29,7 @@ graph TD
     Grafana -->|Query| Prometheus
 ```
 
-Ver o ficheiro [Diagrama da Arquitetura.png](Diagrama%20da%20Arquitetura.png) para uma visão mais clara.
+![Diagrama da Arquitetura](Diagrama%20da%20Arquitetura.png)
 
 ## 2. Componentes Principais
 
